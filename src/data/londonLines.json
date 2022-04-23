@@ -1,0 +1,80 @@
+[
+    {
+      "line": 1,
+      "name": "Bakerloo Line",
+      "colour": "AE6017",
+      "stripe": "NULL"
+    },
+    {
+      "line": 3,
+      "name": "Circle Line",
+      "colour": "FFE02B",
+      "stripe": "NULL"
+    },
+    {
+      "line": 6,
+      "name": "Hammersmith & City Line",
+      "colour": "F491A8",
+      "stripe": "NULL"
+    },
+    {
+      "line": 7,
+      "name": "Jubilee Line",
+      "colour": 949699,
+      "stripe": "NULL"
+    },
+    {
+      "line": 11,
+      "name": "Victoria Line",
+      "colour": "0A9CDA",
+      "stripe": "NULL"
+    },
+    {
+      "line": 2,
+      "name": "Central Line",
+      "colour": "F15B2E",
+      "stripe": "NULL"
+    },
+    {
+      "line": 4,
+      "name": "District Line",
+      "colour": "00A166",
+      "stripe": "NULL"
+    },
+    {
+      "line": 5,
+      "name": "East London Line",
+      "colour": "FBAE34",
+      "stripe": "NULL"
+    },
+    {
+      "line": 8,
+      "name": "Metropolitan Line",
+      "colour": "91005A",
+      "stripe": "NULL"
+    },
+    {
+      "line": 9,
+      "name": "Northern Line",
+      "colour": "000000",
+      "stripe": "NULL"
+    },
+    {
+      "line": 10,
+      "name": "Piccadilly Line",
+      "colour": "094FA3",
+      "stripe": "NULL"
+    },
+    {
+      "line": 12,
+      "name": "Waterloo & City Line",
+      "colour": "88D0C4",
+      "stripe": "NULL"
+    },
+    {
+      "line": 13,
+      "name": "Docklands Light Railway",
+      "colour": "00A77E",
+      "stripe": "FFFFFF"
+    }
+  ]
