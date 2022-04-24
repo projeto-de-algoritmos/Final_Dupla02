@@ -4,6 +4,16 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 const SearchPath = (props) => {
+
+    const onInitialStationChange = (e, newStation) => {
+        props.handleInitialStation(newStation);
+    }
+
+    const onFinalStationChange = (e, newStation) => {
+        props.handleFinalStation(newStation);
+    }
+
+
     return (
         <div>
             <Autocomplete
@@ -15,8 +25,7 @@ const SearchPath = (props) => {
                 <TextField {...params} label="Estação Inicial" />
                 )}
                 // isOptionEqualToValue={(option, value) => option.id === value.id}
-                onChange={props.handleInitialStation}
-
+                onChange={onInitialStationChange}
             />
             <Autocomplete
               disablePortal
@@ -27,7 +36,7 @@ const SearchPath = (props) => {
                 <TextField {...params} label="Estação Final" />
               )}
             //   isOptionEqualToValue={(option, value) => option.id === value.id}
-              onChange={props.handleFinalStation}
+              onChange={onFinalStationChange}
             />
             <Button
               variant="contained"

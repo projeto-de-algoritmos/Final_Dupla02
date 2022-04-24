@@ -15,6 +15,8 @@ const Map = (props) => {
                         station.latitude,
                         station.longitude
                     ]}
+                    color="red"
+                    // eventHandlers={{ click: () => props.handleStation(station) }}
                 >
                     <Popup>
                         {station.name}

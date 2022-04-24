@@ -10,18 +10,29 @@ const londonGraph = require("./data/londonGraph.json");
 function App() {
   const [initialStation, setInitialStation] = useState(0);
   const [finalStation, setFinalStation] = useState(0);
+  const [isInitialStation, setIsInitialStation] = useState(true);
 
-  const handleInitialStation = (e, newStation) => {
+  const handleInitialStation = (newStation) => {
     setInitialStation(newStation);
   }
 
-  const handleFinalStation = (e, newStation) => {
+  const handleFinalStation = (newStation) => {
     setFinalStation(newStation);
   }
 
   const handleSearch = () => {
     console.log(initialStation);
     console.log(finalStation);
+  }
+
+  const handleStation = (newStation) => {
+    // if(isInitialStation){
+    //   handleInitialStation(newStation);
+    //   setIsInitialStation(false);
+    // }else{
+    //   handleFinalStation(newStation);
+    //   setIsInitialStation(true);
+    // }
   }
 
 
@@ -38,7 +49,7 @@ function App() {
           />
         </Grid>
         <Grid item xs={9}>
-          <Map londonGraph={londonGraph}/>
+          <Map londonGraph={londonGraph} handleStation={handleStation}/>
         </Grid>
       </Grid>
     </Box>
