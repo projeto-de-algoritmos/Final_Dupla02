@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -11,6 +11,17 @@ function App() {
   const [initialStation, setInitialStation] = useState(0);
   const [finalStation, setFinalStation] = useState(0);
   const [isInitialStation, setIsInitialStation] = useState(true);
+  const [path, setPath] = useState([]);
+
+  useEffect(() => {
+    const markers = document.querySelectorAll(".markers");
+
+    path.forEach(station => {
+      markers[station].style.stroke = "red";
+      markers[station].style.fill = "red";
+      
+    })
+  }, [path]); 
 
   const handleInitialStation = (newStation) => {
     setInitialStation(newStation);
@@ -23,6 +34,7 @@ function App() {
   const handleSearch = () => {
     console.log(initialStation);
     console.log(finalStation);
+    setPath([10, 162, 81, 191, 20, 34, 45, 1]);
   }
 
   const handleStation = (newStation) => {
@@ -49,7 +61,7 @@ function App() {
           />
         </Grid>
         <Grid item xs={9}>
-          <Map londonGraph={londonGraph} handleStation={handleStation}/>
+          <Map londonGraph={londonGraph} handleStation={handleStation} path={path}/>
         </Grid>
       </Grid>
     </Box>

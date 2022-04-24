@@ -1,5 +1,5 @@
-import React from "react";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { useState } from "react";
+import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
 
 const Map = (props) => {
     return (
@@ -9,19 +9,21 @@ const Map = (props) => {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             />
             {props.londonGraph.map(station => (
-                <Marker
+                <CircleMarker
                     key={station.id}
-                    position={[
+                    center={[
                         station.latitude,
                         station.longitude
                     ]}
-                    color="red"
+                    radius={7}
+                    color="blue"
+                    className="markers"
                     // eventHandlers={{ click: () => props.handleStation(station) }}
                 >
                     <Popup>
                         {station.name}
                     </Popup>
-                </Marker>
+                </CircleMarker>
             ))}
         </MapContainer>
     )
