@@ -2,7 +2,6 @@
 
 <img src="./src/imgs/londonUnderground.svg" alt="Logo London Underground" width="200"/>
 
-
 **Número da Lista**: 6<br>
 **Conteúdo da Disciplina**: Final<br>
 
@@ -13,7 +12,7 @@
 | 19/0106565  |  Fernando Miranda Calil |
 
 ## Sobre 
-O sistema de metrô de Londres, também conhecido como London Underground, é o mais antigo e um dos mais extensos do mundo. Este projeto visa encontrar o menor caminho entre duas estações de metrô utilizando o Algoritmo A*(A-estrela). Os dados deste sistema foram adaptados [desse repositório](https://github.com/nicola/tubemaps/tree/master/datasets).
+O sistema de metrô de Londres, também conhecido como London Underground, é o mais antigo e um dos mais extensos do mundo. Este projeto visa encontrar o menor caminho entre duas estações de metrô utilizando o Algoritmo A*(A-estrela). Os dados deste sistema foram adaptados do seguinte [projeto](http://markd.ie/2016/04/10/The-London-Tube-as-a-Graph/).
 
 ## Screenshots
 ![Screenshot 1](src/imgs/screenshots/screenshot1.png)
