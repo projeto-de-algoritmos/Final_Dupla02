@@ -1,6 +1,5 @@
-const londonGraph = require("../data/londonGraph.json");
 
-function calcDist(start, end) {
+function calcDist(start, end, londonGraph) {
     var lat1 = londonGraph[start].latitude;
     var lon1 = londonGraph[start].longitude;
 
@@ -19,7 +18,7 @@ function calcDist(start, end) {
     return R * c;
 }
 
-function createAdjencencyList() {
+function createAdjencencyList(londonGraph) {
     let adjencencyList = new Array(302);
 
     for (let i = 0; i < adjencencyList.length; i++)
@@ -46,50 +45,40 @@ function calcF(destination, start, end) {
     return h + calcDist(destination, start)
 }
 
-function aStar(start, end) {
+function aStar(start, end, londonGraph) {
     let open = [];
     let distance = new Array(302).fill(0);
-    let path = new Array(302).fill(-1);
-    const connectedStations = createAdjencencyList();
+    let path = []
+    //let path = new Array(302).fill(-1);
+    const connectedStations = createAdjencencyList(londonGraph);
 
     let current = start;
-    distance[current] = calcDist(current, end);
+    distance[current] = calcDist(current, end, londonGraph);
     open.splice(0, 0, current);
-    console.log(connectedStations);
 
     while (current !== end) {
         for(let i = 0; i < connectedStations[current].length; i++) {
             let destination = connectedStations[current][i]
-            // console.log(i, connectedStations[current].length, connectedStations[current], open, distance[0])
             if (distance[destination] >= 0 && !open.includes(destination)) {
                 distance[destination] = calcF(destination, start, end);
 
                 if (distance[destination] < distance[open[0]]) {
                     open.splice(0, 0, destination);
-                    console.log('if', path[destination], current, destination);
-                    path[destination] = current;
+                    path.push(current);
                     current = destination;
-                    console.log('depoisif', path, current);
                 }
                 else {
-                    console.log('else', path[destination], current, destination);
                     let j;
                     for (j = 0; j < open.length && distance[open[j]] < distance[destination]; j++);
                     open.splice(j, 0, destination);
                 }
             }
         }
-        console.log('fim', path, current, open, distance);
         distance[current] = -1;
-        path[open[0]] = current;
         current = open.shift();
     }
     console.log(path);
-
-    // while(path[current] !== -1) {
-    //     console.log(path[current]);
-    //     current = path[current];
-    // }
+    return(path);
 }
 
 
