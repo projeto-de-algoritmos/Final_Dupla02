@@ -53,7 +53,7 @@ npm install
 npm start
 ```
 ## Uso 
-Selecione uma Estação Inicial e uma Estação Final e clique em "Encontrar Menor Caminho" para que algoritmo calcule e retorne a menor rota.
+Selecione uma Estação Inicial e uma Estação Final e clique em "Encontrar Menor Caminho" para que o algoritmo calcule e retorne a menor rota.
 
 
 
