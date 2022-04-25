@@ -2,7 +2,7 @@
 const londonGraph = require('../data/londonGraph.json');
 const NUMBER_STATIONS = 302;
 
-function calcDist(start, end) {
+function calcDist(start, end) {                                 // Calcula heuristica a partir da latitude e longitude
     var lat1 = londonGraph[start].latitude;
     var lon1 = londonGraph[start].longitude;
 
@@ -21,7 +21,7 @@ function calcDist(start, end) {
     return R * c;
 }
 
-function createAdjencencyList() {
+function createAdjencencyList() {                               // Cria lista de conexões entre as estações
     let adjencencyList = new Array(NUMBER_STATIONS);
 
     for (let i = 0; i < NUMBER_STATIONS; i++)
@@ -29,10 +29,10 @@ function createAdjencencyList() {
 
     for (let i = 0; i < NUMBER_STATIONS; i++) {
         for (let j = 0; j < londonGraph[i].destinations.length; j++) {
-            let connection = londonGraph[i].destinations[j].destinationStationId;
+            let connection = [londonGraph[i].destinations[j].destinationStationId, londonGraph[i].destinations[j].time];
             if (!adjencencyList[i].includes(connection)) {
                 adjencencyList[i].push(connection);
-                adjencencyList[connection].push(i);
+                adjencencyList[connection[0]].push([i, connection[1]]);
             }
         }
     }
@@ -43,9 +43,9 @@ function deg2rad(deg) {
     return deg * (Math.PI/180);
 }
 
-function calcF(destination, start, end) {
+function calcF(destination, dist, end) {                    //Calcula peso necessário para a prioridade de escolha
     let h = calcDist(destination, end);
-    return h + calcDist(destination, start)
+    return h + calcDist(dist, end)
 }
 
 function aStar(start, end) {
@@ -61,33 +61,30 @@ function aStar(start, end) {
 
     while (current !== end) {
         for(let i = 0; i < connectedStations[current].length; i++) {
-            let destination = connectedStations[current][i]
+            let destination = connectedStations[current][i][0]
+
             if (distance[destination] >= 0) {
-                let dist = calcF(destination, current, end);
+                let dist = calcF(destination, connectedStations[current][i][0], end);
 
                 if (distance[destination] === 0 || dist < distance[destination]) {
                     distance[destination] = dist;
                     path[destination] = current;
 
-                    if (distance[destination] < distance[open[0]])
-                        open.splice(0, 0, destination);
-                    else {
-                        let j;
-                        for (j = 0; j < open.length && distance[open[j]] < distance[destination]; j++);
-                        open.splice(j, 0, destination);
-                    }
+                    let j;
+                    for (j = 0; j < open.length && distance[open[j]] < dist; j++);
+                    open.splice(j, 0, destination);
                 }
             }
         }
-        //console.log(open)
         distance[current] = -1;
         current = open.shift();
     }
+
     while (path[current] !== -1) {
         answer.unshift(path[current]);
         current = path[current];
     }
-    answer.push(end)
+    answer.push(end);
     console.log(answer);
     return answer
 }
