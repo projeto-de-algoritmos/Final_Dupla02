@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Map from './components/Map/Map';
 import SearchPath from './components/SearchPath/SearchPath';
-import { dijkstra } from './algorithm/astar';
 import './algorithm/aStarF';
 import aStar from './algorithm/aStarF';
 import londonUnderground from './imgs/londonUnderground.svg';
@@ -20,8 +19,6 @@ function App() {
 
   useEffect(() => {
     const markers = document.querySelectorAll(".markers");
-
-    markers.forEach(el => el.style.stroke="blue")
 
     markers.forEach(el => el.style.stroke="grey")
 
@@ -54,11 +51,8 @@ function App() {
       console.log(initialStation);
       console.log(finalStation);
 
-
-      const answer = dijkstra(initialStation.id, finalStation.id, londonGraph);
-      const teste = aStar(initialStation.id, finalStation.id);
-      console.log(answer, teste);
-      setPath(teste);
+      const answer = aStar(initialStation.id, finalStation.id);
+      setPath(answer);
 
     }catch{
       window.alert("Selecione as Estações")

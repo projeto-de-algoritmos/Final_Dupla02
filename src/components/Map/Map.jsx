@@ -23,8 +23,7 @@ const Map = (props) => {
                     className="markers"
                 >
                     <Popup>
-                        {station.name}<br/>
-                        id:{station.id}
+                        {station.name}
                     </Popup>
                 </CircleMarker>
             ))}
@@ -34,7 +33,7 @@ const Map = (props) => {
                 ]} color={'#161780'}>
                     <Popup>
                         {londonLines[londonLines.findIndex(x => 
-                            x.line == props.londonGraph[pair[0]].destinations[props.londonGraph[pair[0]].destinations.findIndex(x => 
+                            x.line === props.londonGraph[pair[0]].destinations[props.londonGraph[pair[0]].destinations.findIndex(x => 
                             x.destinationStationId === pair[1])].line)].name}
                     </Popup>
                 </Polyline>

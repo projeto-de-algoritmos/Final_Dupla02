@@ -31,7 +31,6 @@ const SearchPath = (props) => {
                 renderInput={(params) => (
                 <TextField {...params} label="Estação Inicial" />
                 )}
-                // isOptionEqualToValue={(option, value) => option.id === value.id}
                 onChange={onInitialStationChange}
             />
             <Autocomplete
@@ -42,7 +41,6 @@ const SearchPath = (props) => {
               renderInput={(params) => (
                 <TextField {...params} label="Estação Final" />
               )}
-            //   isOptionEqualToValue={(option, value) => option.id === value.id}
               onChange={onFinalStationChange}
             />
             <Button
@@ -50,7 +48,7 @@ const SearchPath = (props) => {
               sx={{ marginTop: "10px", width: "80%", height: "20%" }}
               onClick={props.handleSearch}
             >
-              Encontrar
+              Encontrar Menor Caminho
             </Button>
         </Grid>
     )
