@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, CircleMarker, Popup, Polyline } from 'react-leaflet';
 
 const Map = (props) => {
     return (
@@ -21,10 +21,18 @@ const Map = (props) => {
                     // eventHandlers={{ click: () => props.handleStation(station) }}
                 >
                     <Popup>
-                        {station.name}
+                        {station.name}<br/>
+                        id:{station.id}
                     </Popup>
                 </CircleMarker>
             ))}
+            {props.pathPairs.map(pair => (
+                <Polyline key={pair} positions={[
+                        [props.londonGraph[pair[0]].latitude, props.londonGraph[pair[0]].longitude], [props.londonGraph[pair[1]].latitude, props.londonGraph[pair[1]].longitude],
+                    ]} color={'#161780'} />
+
+            ))}
+
         </MapContainer>
     )
 }

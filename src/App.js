@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Map from './components/Map/Map';
 import SearchPath from './components/SearchPath/SearchPath';
+import { dijkstra } from './algorithm/astar';
 
 const londonGraph = require("./data/londonGraph.json");
 
@@ -12,15 +13,30 @@ function App() {
   const [finalStation, setFinalStation] = useState(0);
   const [isInitialStation, setIsInitialStation] = useState(true);
   const [path, setPath] = useState([]);
+  const [pathPairs, setPathPairs] = useState([]);
+
 
   useEffect(() => {
     const markers = document.querySelectorAll(".markers");
+
+    markers.forEach(el => el.style.stroke="blue")
+
+    markers.forEach(el => el.style.stroke="grey")
 
     path.forEach(station => {
       markers[station].style.stroke = "red";
       markers[station].style.fill = "red";
       
     })
+
+    const pairs = [];
+
+    for(let i = 0; i < path.length; i++){
+      if(i !== path.length - 1){
+        pairs.push([path[i], path[i + 1]]);
+      }
+    }
+    setPathPairs(pairs);
   }, [path]); 
 
   const handleInitialStation = (newStation) => {
@@ -34,7 +50,11 @@ function App() {
   const handleSearch = () => {
     console.log(initialStation);
     console.log(finalStation);
-    setPath([10, 162, 81, 191, 20, 34, 45, 1]);
+
+    
+    const answer = dijkstra(initialStation.id, finalStation.id, londonGraph);
+    console.log(answer);
+    setPath(answer);
   }
 
   const handleStation = (newStation) => {
@@ -61,7 +81,7 @@ function App() {
           />
         </Grid>
         <Grid item xs={9}>
-          <Map londonGraph={londonGraph} handleStation={handleStation} path={path}/>
+          <Map londonGraph={londonGraph} handleStation={handleStation} path={path} pathPairs={pathPairs}/>
         </Grid>
       </Grid>
     </Box>
