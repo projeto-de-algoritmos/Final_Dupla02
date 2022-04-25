@@ -1,44 +1,59 @@
-**!! Atenção: Renomeie o seu repositório para (Tema)_(NomeDoProjeto). !!** 
+# London Underground
 
-Temas:
- - Grafos1
- - Grafos2
- - PD
- - D&C
- - Greed
- - Final 
- 
- **!! *Não coloque os nomes dos alunos no título do repositório*. Exemplo de título correto: Grafos2_Labirinto-do-Minotauro !!**
- 
- (Apague essa seção)
+<img src="./src/imgs/londonUnderground.svg" alt="Logo London Underground" width="200"/>
 
-# NomedoProjeto
 
-**Número da Lista**: X<br>
-**Conteúdo da Disciplina**: XXXXXXXXXX<br>
+**Número da Lista**: 6<br>
+**Conteúdo da Disciplina**: Final<br>
 
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 17/0080102  |  Lucas Gomes Lopes |
+| 19/0106565  |  Fernando Miranda Calil |
 
 ## Sobre 
-Descreva os objetivos do seu projeto e como ele funciona. 
+O sistema de metrô de Londres, também conhecido como London Underground, é o mais antigo e um dos mais extensos do mundo. Este projeto visa encontrar o menor caminho entre duas estações de metrô utilizando o Algoritmo A*(A-estrela). Os dados deste sistema foram adaptados [desse repositório](https://github.com/nicola/tubemaps/tree/master/datasets).
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+![Screenshot 1](src/imgs/screenshots/screenshot1.png)
+
+![Screenshot 2](src/imgs/screenshots/screenshot2.png)
+
+![Screenshot 3](src/imgs/screenshots/screenshot3.png)
+
 
 ## Instalação 
-**Linguagem**: xxxxxx<br>
-**Framework**: (caso exista)<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
+**Linguagem**: Javascript<br>
+**Framework**: ReactJS<br>
 
+Siga as instruções a seguir :
+
+1) Clonar o repositório:
+
+```sh 
+git clone git@github.com:projeto-de-algoritmos/Final_LondonUnderground.git
+```
+
+2) Acessar a pasta da aplicação React:
+
+```sh 
+cd Final_LondonUnderground
+```
+
+3) Instalar as dependências:
+
+```sh 
+npm install
+```
+
+4) Execute a aplicação:
+
+```sh 
+npm start
+```
 ## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
-
-## Outros 
-Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
+Selecione uma Estação Inicial e uma Estação Final e clique em "Encontrar Menor Caminho" para que algoritmo calcule e retorne a menor rota.
 
 
 
