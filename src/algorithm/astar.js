@@ -4,7 +4,7 @@ export const minDistance = (src, dist, paths, queue, graph, visited) => {
 
     for(let i = 0; i < graph[src].destinations.length; i++) {
         let position = graph[src].destinations[i].destinationStationId;
-        let cost = 1/graph[src].destinations[i].time;
+        let cost = graph[src].destinations[i].time;
 
 
         if(!visited[position] && dist[src] + cost < dist[position]) {

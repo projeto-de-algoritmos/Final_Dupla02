@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { MapContainer, TileLayer, CircleMarker, Popup, Polyline } from 'react-leaflet';
 
 const Map = (props) => {
@@ -18,7 +18,6 @@ const Map = (props) => {
                     radius={7}
                     color="blue"
                     className="markers"
-                    // eventHandlers={{ click: () => props.handleStation(station) }}
                 >
                     <Popup>
                         {station.name}<br/>

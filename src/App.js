@@ -7,13 +7,13 @@ import SearchPath from './components/SearchPath/SearchPath';
 import { dijkstra } from './algorithm/astar';
 import './algorithm/aStarF';
 import aStar from './algorithm/aStarF';
+import londonUnderground from './imgs/londonUnderground.svg';
 
 const londonGraph = require("./data/londonGraph.json");
 
 function App() {
   const [initialStation, setInitialStation] = useState(0);
   const [finalStation, setFinalStation] = useState(0);
-  const [isInitialStation, setIsInitialStation] = useState(true);
   const [path, setPath] = useState([]);
   const [pathPairs, setPathPairs] = useState([]);
 
@@ -50,39 +50,48 @@ function App() {
   }
 
   const handleSearch = () => {
-    console.log(initialStation);
-    console.log(finalStation);
+    try{
+      console.log(initialStation);
+      console.log(finalStation);
 
 
-    const answer = dijkstra(initialStation.id, finalStation.id, londonGraph);
-    const teste = aStar(initialStation.id, finalStation.id);
-    console.log(answer, teste);
-    setPath(answer);
+      const answer = dijkstra(initialStation.id, finalStation.id, londonGraph);
+      const teste = aStar(initialStation.id, finalStation.id);
+      console.log(answer, teste);
+      setPath(answer);
+
+    }catch{
+      window.alert("Selecione as Estações")
+    }
   }
-
-  const handleStation = (newStation) => {
-    // if(isInitialStation){
-    //   handleInitialStation(newStation);
-    //   setIsInitialStation(false);
-    // }else{
-    //   handleFinalStation(newStation);
-    //   setIsInitialStation(true);
-    // }
-  }
+  
   return (
     <Box sx={{ width: "100vw", height: "100vh" }}>
       <Grid container sx={{ height: "100%" }}>
-        <Grid item xs={3}>
-          <h1>London Underground</h1>
-          <SearchPath
-            londonGraph={londonGraph}
-            handleInitialStation={handleInitialStation}
-            handleFinalStation={handleFinalStation}
-            handleSearch={handleSearch}
-          />
+        <Grid 
+          item xs={3}
+        >
+          <Grid
+            sx={{ width: "100%", height: "100vh" }}
+            container
+            direction="column"
+            justifyContent="flex-start"
+            alignItems="center"
+          >
+            <img 
+              src={londonUnderground} 
+              style={{width: "100%", height: "30%"}} 
+            />
+            <SearchPath
+              londonGraph={londonGraph}
+              handleInitialStation={handleInitialStation}
+              handleFinalStation={handleFinalStation}
+              handleSearch={handleSearch}
+            />
+          </Grid>
         </Grid>
         <Grid item xs={9}>
-          <Map londonGraph={londonGraph} handleStation={handleStation} path={path} pathPairs={pathPairs}/>
+          <Map londonGraph={londonGraph} path={path} pathPairs={pathPairs}/>
         </Grid>
       </Grid>
     </Box>

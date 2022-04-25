@@ -2,6 +2,7 @@ import React from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Grid from '@mui/material/Grid';
 
 const SearchPath = (props) => {
 
@@ -15,7 +16,13 @@ const SearchPath = (props) => {
 
 
     return (
-        <div>
+        <Grid
+          container
+          direction="column"
+          justifyContent="space-around"
+          alignItems="center"
+          sx={{height: "30vh" }}
+        >
             <Autocomplete
                 disablePortal
                 options={props.londonGraph}
@@ -40,12 +47,12 @@ const SearchPath = (props) => {
             />
             <Button
               variant="contained"
-              sx={{ marginTop: "10px", width: "80%" }}
+              sx={{ marginTop: "10px", width: "80%", height: "20%" }}
               onClick={props.handleSearch}
             >
               Encontrar
             </Button>
-        </div>
+        </Grid>
     )
 }
 
