@@ -55,7 +55,7 @@ function App() {
 
 
     const answer = dijkstra(initialStation.id, finalStation.id, londonGraph);
-    const teste = aStar(initialStation.id, finalStation.id, londonGraph);
+    const teste = aStar(initialStation.id, finalStation.id);
     console.log(answer, teste);
     setPath(answer);
   }

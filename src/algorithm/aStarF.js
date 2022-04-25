@@ -1,5 +1,8 @@
 
-function calcDist(start, end, londonGraph) {
+const londonGraph = require('../data/londonGraph.json');
+const NUMBER_STATIONS = 302;
+
+function calcDist(start, end) {
     var lat1 = londonGraph[start].latitude;
     var lon1 = londonGraph[start].longitude;
 
@@ -18,13 +21,13 @@ function calcDist(start, end, londonGraph) {
     return R * c;
 }
 
-function createAdjencencyList(londonGraph) {
-    let adjencencyList = new Array(302);
+function createAdjencencyList() {
+    let adjencencyList = new Array(NUMBER_STATIONS);
 
-    for (let i = 0; i < adjencencyList.length; i++)
+    for (let i = 0; i < NUMBER_STATIONS; i++)
         adjencencyList[i] = []
 
-    for (let i = 0; i < adjencencyList.length; i++) {
+    for (let i = 0; i < NUMBER_STATIONS; i++) {
         for (let j = 0; j < londonGraph[i].destinations.length; j++) {
             let connection = londonGraph[i].destinations[j].destinationStationId;
             if (!adjencencyList[i].includes(connection)) {
@@ -45,40 +48,48 @@ function calcF(destination, start, end) {
     return h + calcDist(destination, start)
 }
 
-function aStar(start, end, londonGraph) {
+function aStar(start, end) {
     let open = [];
-    let distance = new Array(302).fill(0);
-    let path = []
-    //let path = new Array(302).fill(-1);
-    const connectedStations = createAdjencencyList(londonGraph);
+    let answer = [];
+    let distance = new Array(NUMBER_STATIONS).fill(0);
+    let path = new Array(NUMBER_STATIONS).fill(-1);
+    const connectedStations = createAdjencencyList();
 
     let current = start;
-    distance[current] = calcDist(current, end, londonGraph);
+    distance[current] = calcDist(current, end);
     open.splice(0, 0, current);
 
     while (current !== end) {
         for(let i = 0; i < connectedStations[current].length; i++) {
             let destination = connectedStations[current][i]
-            if (distance[destination] >= 0 && !open.includes(destination)) {
-                distance[destination] = calcF(destination, start, end);
+            if (distance[destination] >= 0) {
+                let dist = calcF(destination, current, end);
 
-                if (distance[destination] < distance[open[0]]) {
-                    open.splice(0, 0, destination);
-                    path.push(current);
-                    current = destination;
-                }
-                else {
-                    let j;
-                    for (j = 0; j < open.length && distance[open[j]] < distance[destination]; j++);
-                    open.splice(j, 0, destination);
+                if (distance[destination] === 0 || dist < distance[destination]) {
+                    distance[destination] = dist;
+                    path[destination] = current;
+
+                    if (distance[destination] < distance[open[0]])
+                        open.splice(0, 0, destination);
+                    else {
+                        let j;
+                        for (j = 0; j < open.length && distance[open[j]] < distance[destination]; j++);
+                        open.splice(j, 0, destination);
+                    }
                 }
             }
         }
+        //console.log(open)
         distance[current] = -1;
         current = open.shift();
     }
-    console.log(path);
-    return(path);
+    while (path[current] !== -1) {
+        answer.unshift(path[current]);
+        current = path[current];
+    }
+    answer.push(end)
+    console.log(answer);
+    return answer
 }
 
 
