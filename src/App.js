@@ -81,6 +81,7 @@ function App() {
             <img 
               src={londonUnderground} 
               style={{width: "100%", height: "30%"}} 
+              alt="Logo London Underground"
             />
             <SearchPath
               londonGraph={londonGraph}
